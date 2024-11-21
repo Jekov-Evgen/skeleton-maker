@@ -1,7 +1,22 @@
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QIcon
-from PyQt6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QPushButton, QLabel, QLineEdit
+from PyQt6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QPushButton, QLabel, QLineEdit, QMessageBox
 from GUI.style.style import CONST_MAIN_WINDOW
+from Logics.logic_for_Qt import create_project_Qt
+
+def error_window():
+    error = QMessageBox()
+    error.setWindowTitle("Ошибка")
+    error.setWindowIcon(QIcon("image\icon.webp"))
+    error.setText("Скорее всего такая уже существует")
+    error.exec()
+    
+def window_of_success():
+    success = QMessageBox()
+    success.setWindowTitle("Успех")
+    success.setWindowIcon(QIcon("image\icon.webp"))
+    success.setText("Ваш проект создан")
+    success.exec()
 
 class MainWindow(QMainWindow):
     def __init__(self) -> None:
@@ -29,4 +44,10 @@ class MainWindow(QMainWindow):
         self.show()
     
     def create_Qt(self):
-        print("Допустим создался")
+        try:
+            name_folder = self.input_field.text()
+            create_project_Qt(name_folder)
+        except:
+            error_window()
+            
+        window_of_success()
