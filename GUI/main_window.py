@@ -2,7 +2,7 @@ from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QPushButton, QLabel, QLineEdit, QMessageBox
 from GUI.style.style import CONST_MAIN_WINDOW
-from Logics.logic_for_Qt import create_project_Qt
+from Logics.Qt.logic_for_Qt import create_project_Qt
 
 def error_window():
     error = QMessageBox()
