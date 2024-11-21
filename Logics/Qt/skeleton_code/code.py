@@ -23,3 +23,8 @@ class MainWindow(QMainWindow):
         
         self.show()
 """
+
+CONST_GIT = """
+image
+__pycache__
+"""

@@ -1,5 +1,5 @@
 import os
-from Logics.Qt.skeleton_code.code import CONST_COD_MAIN, CONST_COD_MAIN_WINDOW
+from Logics.Qt.skeleton_code.code import CONST_COD_MAIN, CONST_COD_MAIN_WINDOW, CONST_GIT
 
 def create_project_Qt(name : str):
     desktop_path = os.path.join(os.path.expanduser("~"), r"OneDrive\Desktop")
@@ -12,9 +12,14 @@ def create_project_Qt(name : str):
     file_main_window = os.path.join(folder_UI, "main_window.py")
     folder_style = os.path.join(folder_UI, "style")
     style_file = os.path.join(folder_style, "style_Qt.py")
+    image_folder = os.path.join(new_path, "image")
+    logics_folder = os.path.join(new_path, "Logics")
+    git_ignore = os.path.join(new_path, ".gitignore")
     
     os.mkdir(folder_UI)
     os.mkdir(folder_style)
+    os.mkdir(image_folder)
+    os.mkdir(logics_folder)
     
     with open(main_file, 'w') as f:
         f.write(CONST_COD_MAIN)
@@ -24,3 +29,6 @@ def create_project_Qt(name : str):
     
     with open(style_file, 'w'):
         pass
+    
+    with open(git_ignore, 'w') as f:
+        f.write(CONST_GIT)
