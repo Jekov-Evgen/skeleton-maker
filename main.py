@@ -1,9 +1,9 @@
 from PyQt6.QtWidgets import QApplication
-from GUI.main_window import MainWindow
+from GUI.initial_window import CreationSelectionWindow
 
 if __name__ == "__main__":
     app = QApplication([])
     
-    start = MainWindow()
+    start = CreationSelectionWindow()
     
     app.exec()
