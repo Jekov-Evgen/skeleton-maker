@@ -20,12 +20,13 @@ def window_of_success():
     success.exec()
 
 class MainWindow(QMainWindow):
-    def __init__(self) -> None:
+    def __init__(self, path) -> None:
         super().__init__()
         self.setWindowTitle("Создание скелетов")
         self.setFixedSize(500, 500)
         self.setStyleSheet(CONST_MAIN_WINDOW)
         self.setWindowIcon(QIcon("image\icon.webp"))
+        self.creation_folder = path
         
         control_UI = QVBoxLayout()
         central_widget = QWidget()
@@ -51,7 +52,7 @@ class MainWindow(QMainWindow):
     def create_Qt(self):
         try:
             name_folder = self.input_field.text()
-            create_project_Qt(name_folder)
+            create_project_Qt(name_folder, self.creation_folder)
         except:
             error_window()
             
@@ -60,7 +61,7 @@ class MainWindow(QMainWindow):
     def create_Django(self):
         try:
             name_folder = self.input_field.text()
-            create_project_Django(name_folder)
+            create_project_Django(name_folder, self.creation_folder)
         except:
             error_window()
             

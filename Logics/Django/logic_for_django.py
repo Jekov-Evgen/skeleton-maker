@@ -1,9 +1,8 @@
 import os
 from Logics.Django.skeleton_code.cod import CONST_GIT
 
-def create_project_Django(name : str):
-    desktop_path = os.path.join(os.path.expanduser("~"), r"OneDrive\Desktop")
-    new_path = os.path.join(desktop_path, name)    
+def create_project_Django(name : str, path):
+    new_path = os.path.join(path, name)    
     os.mkdir(new_path)
     
     os.chdir(new_path)

@@ -2,6 +2,7 @@ from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QMainWindow, QWidget, QLabel, QPushButton, QVBoxLayout, QFileDialog
 from GUI.style.style import CONST_CREATION_SELECTION_WINDOW
+from GUI.main_window import MainWindow
 
 class CreationSelectionWindow(QMainWindow):
     def __init__(self) -> None:
@@ -10,6 +11,8 @@ class CreationSelectionWindow(QMainWindow):
         self.setWindowTitle("Окно выбора деректории")
         self.setWindowIcon(QIcon(r"image\icon.webp"))
         self.setStyleSheet(CONST_CREATION_SELECTION_WINDOW)
+        
+        self.start = None
         
         control_UI = QVBoxLayout()
         central_widget = QWidget()
@@ -29,4 +32,5 @@ class CreationSelectionWindow(QMainWindow):
     def start_of_work(self):
         folder_path = QFileDialog.getExistingDirectory(self, "Выберите путь к проекту")
         
-        print(folder_path)
+        self.hide()
+        self.start = MainWindow(folder_path)

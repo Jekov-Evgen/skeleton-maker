@@ -1,9 +1,8 @@
 import os
 from Logics.Qt.skeleton_code.code import CONST_COD_MAIN, CONST_COD_MAIN_WINDOW, CONST_GIT
 
-def create_project_Qt(name : str):
-    desktop_path = os.path.join(os.path.expanduser("~"), r"OneDrive\Desktop")
-    new_path = os.path.join(desktop_path, name)    
+def create_project_Qt(name : str, path):
+    new_path = os.path.join(path, name)    
     os.mkdir(new_path)
     
     name_main = "main.py"
