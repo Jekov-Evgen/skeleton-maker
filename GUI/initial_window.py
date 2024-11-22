@@ -1,6 +1,6 @@
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QIcon
-from PyQt6.QtWidgets import QMainWindow, QWidget, QApplication, QLabel, QLineEdit, QPushButton, QVBoxLayout
+from PyQt6.QtWidgets import QMainWindow, QWidget, QLabel, QPushButton, QVBoxLayout, QFileDialog
 from GUI.style.style import CONST_CREATION_SELECTION_WINDOW
 
 class CreationSelectionWindow(QMainWindow):
@@ -16,6 +16,7 @@ class CreationSelectionWindow(QMainWindow):
         
         instructions = QLabel(text="Выберите деректорию куда сохранить проект")
         directory_selection = QPushButton(text="Выберите дерикторию")
+        directory_selection.clicked.connect(self.start_of_work)
         
         control_UI.addWidget(instructions, alignment=Qt.AlignmentFlag.AlignCenter)
         control_UI.addWidget(directory_selection)      
@@ -24,3 +25,8 @@ class CreationSelectionWindow(QMainWindow):
         
         self.setCentralWidget(central_widget)
         self.show()
+        
+    def start_of_work(self):
+        folder_path = QFileDialog.getExistingDirectory(self, "Выберите путь к проекту")
+        
+        print(folder_path)
