@@ -1,6 +1,6 @@
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QIcon
-from PyQt6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QPushButton, QLabel, QLineEdit, QMessageBox
+from PyQt6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QPushButton, QLabel, QLineEdit, QMessageBox, QFileDialog
 from GUI.style.style import CONST_MAIN_WINDOW
 from Logics.Qt.logic_for_Qt import create_project_Qt
 from Logics.Django.logic_for_django import create_project_Django
@@ -20,13 +20,12 @@ def window_of_success():
     success.exec()
 
 class MainWindow(QMainWindow):
-    def __init__(self, path) -> None:
+    def __init__(self) -> None:
         super().__init__()
         self.setWindowTitle("Создание скелетов")
         self.setFixedSize(500, 500)
         self.setStyleSheet(CONST_MAIN_WINDOW)
         self.setWindowIcon(QIcon("image\icon.webp"))
-        self.creation_folder = path
         
         control_UI = QVBoxLayout()
         central_widget = QWidget()
@@ -52,7 +51,8 @@ class MainWindow(QMainWindow):
     def create_Qt(self):
         try:
             name_folder = self.input_field.text()
-            create_project_Qt(name_folder, self.creation_folder)
+            folder_path = QFileDialog.getExistingDirectory(self, "Выберите путь к проекту")
+            create_project_Qt(name_folder, folder_path)
         except:
             error_window()
             
@@ -61,7 +61,8 @@ class MainWindow(QMainWindow):
     def create_Django(self):
         try:
             name_folder = self.input_field.text()
-            create_project_Django(name_folder, self.creation_folder)
+            folder_path = QFileDialog.getExistingDirectory(self, "Выберите путь к проекту")
+            create_project_Django(name_folder, folder_path)
         except:
             error_window()
             
