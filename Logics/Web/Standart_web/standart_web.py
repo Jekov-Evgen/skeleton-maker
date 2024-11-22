@@ -1,7 +1,7 @@
 import os
 from Logics.Web.Standart_web.code import get_html, CONST_CSS, CONST_JS
 
-def create_standard_web_os(name : str, path):
+def create_standard_web_project(name : str, path):
     html_cod = get_html(name)
     
     new_path = os.path.join(path, name)
