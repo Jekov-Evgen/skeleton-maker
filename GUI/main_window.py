@@ -29,6 +29,8 @@ class MainWindow(QMainWindow):
         self.setStyleSheet(CONST_MAIN_WINDOW)
         self.setWindowIcon(QIcon("image\icon.webp"))
         
+        self.success_window_output = True
+        
         control_UI = QVBoxLayout()
         central_widget = QWidget()
         
@@ -63,8 +65,10 @@ class MainWindow(QMainWindow):
             create_project_Qt(name_folder, folder_path)
         except:
             error_window()
+            self.success_window_output = False
             
-        window_of_success()
+        if self.success_window_output == True: 
+            window_of_success()
     
     def create_Django(self):
         try:
@@ -73,8 +77,10 @@ class MainWindow(QMainWindow):
             create_project_Django(name_folder, folder_path)
         except:
             error_window()
+            self.success_window_output = False
             
-        window_of_success()
+        if self.success_window_output == True: 
+            window_of_success()
         
     def create_standart_web(self):
         try:
@@ -83,8 +89,10 @@ class MainWindow(QMainWindow):
             create_standard_web_project(name_folder, folder_path)
         except:
             error_window()
-            
-        window_of_success()
+            self.success_window_output = False
+        
+        if self.success_window_output == True:
+            window_of_success()
         
     def create_Flask(self):
         try:
@@ -92,6 +100,7 @@ class MainWindow(QMainWindow):
             folder_path = QFileDialog.getExistingDirectory(self, "Выберите путь к проекту")
             create_project_Flask(name_folder, folder_path)
         except:
-            error_window()
+            self.success_window_output = False
             
-        window_of_success()
+        if self.success_window_output == True: 
+            window_of_success()
