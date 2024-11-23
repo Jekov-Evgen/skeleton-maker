@@ -9,6 +9,7 @@ from Logics.Flask.logic_for_flask import create_project_Flask
 from Logics.Click.logic_for_click import create_project_click
 from Logics.Docker_.logic_for_docker import create_project_Docker
 from Logics.Rust.logic_for_Rust import create_project_Rust
+from Logics.FastAPI.logic_for_fastAPI import create_project_FastAPI
 
 def error_window():
     error = QMessageBox()
@@ -46,6 +47,7 @@ class MainWindow(QMainWindow):
         button_for_click = QPushButton(text="Создать проект click")
         button_for_Docker = QPushButton(text="Создать проект Docker")
         button_for_Rust = QPushButton(text="создать проект Rust")
+        button_for_FastAPI = QPushButton(text="Создать проект FastAPI")
         
         button_for_Qt.clicked.connect(self.create_Qt)
         button_for_Django.clicked.connect(self.create_Django)
@@ -54,6 +56,7 @@ class MainWindow(QMainWindow):
         button_for_click.clicked.connect(self.create_click)
         button_for_Docker.clicked.connect(self.create_Docker)
         button_for_Rust.clicked.connect(self.create_Rust)
+        button_for_FastAPI.clicked.connect(self.create_FastAPI)
         
         control_UI.addWidget(project_name, alignment=Qt.AlignmentFlag.AlignCenter)
         control_UI.addWidget(self.input_field)
@@ -64,6 +67,7 @@ class MainWindow(QMainWindow):
         control_UI.addWidget(button_for_click)
         control_UI.addWidget(button_for_Docker)
         control_UI.addWidget(button_for_Rust)
+        control_UI.addWidget(button_for_FastAPI)
         
         central_widget.setLayout(control_UI)
         
@@ -147,6 +151,18 @@ class MainWindow(QMainWindow):
             name_folder = self.input_field.text()
             folder_path = QFileDialog.getExistingDirectory(self, "Выберите путь к проекту")
             create_project_Rust(name_folder, folder_path)
+        except:
+            error_window()
+            self.success_window_output = False
+            
+        if self.success_window_output == True: 
+            window_of_success()
+            
+    def create_FastAPI(self):
+        try:
+            name_folder = self.input_field.text()
+            folder_path = QFileDialog.getExistingDirectory(self, "Выберите путь к проекту")
+            create_project_FastAPI(name_folder, folder_path)
         except:
             error_window()
             self.success_window_output = False
